@@ -104,6 +104,19 @@ function M._current_node()
   return M.state.flattened_outline_items[current_line]
 end
 
+local function goto_location_file()
+  local node = M._current_node()
+  vim.api.nvim_set_current_win(M.state.code_win)
+  vim.fn.execute("drop ".. node.filename)
+  -- vim.fn.
+  -- local buf = vim.api.nvim_get_current_buf()
+  -- vim.api.nvim_win_set_buf(M.state.code_win, buf)
+  vim.api.nvim_win_set_cursor(
+    M.state.code_win,
+    { node.line, node.character }
+  )
+end
+
 local function goto_location(change_focus)
   local node = M._current_node()
   vim.api.nvim_win_set_cursor(
@@ -218,7 +231,8 @@ local function setup_keymaps(bufnr)
   end
   -- goto_location of symbol and focus that window
   map(config.options.keymaps.goto_location, function()
-    goto_location(true)
+    -- goto_location(true)
+    goto_location_file()
   end)
   -- goto_location of symbol but stay in outline
   map(config.options.keymaps.focus_location, function()
