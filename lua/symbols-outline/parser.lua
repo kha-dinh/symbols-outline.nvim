@@ -33,6 +33,7 @@ local function parse_result(result, depth, hierarchy, parent)
       local node = {
         deprecated = value.deprecated,
         kind = value.kind,
+        filename = value.filename,
         icon = symbols.icon_from_kind(value.kind),
         name = value.name or value.text,
         detail = value.detail,

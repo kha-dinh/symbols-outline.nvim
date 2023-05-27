@@ -4,6 +4,7 @@ local providers = {
   'symbols-outline/providers/nvim-lsp',
   'symbols-outline/providers/coc',
   'symbols-outline/providers/markdown',
+  'symbols-outline/providers/zk',
 }
 
 _G._symbols_outline_current_provider = nil
